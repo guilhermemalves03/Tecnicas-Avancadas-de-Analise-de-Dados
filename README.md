@@ -1,8 +1,8 @@
-# Técnicas Avançadas de Análise de Dados
+# Advanced Techniques in Data Analysis
 
-Este repositório contém os projetos práticos desenvolvidos no âmbito da unidade curricular de **Técnicas Avançadas de Análise de Dados**. O trabalho divide-se em duas grandes vertentes: Análise Estatística Clássica e Machine Learning aplicado a Séries Temporais Financeiras.
+This repository contains practical projects developed for the **Advanced Techniques in Data Analysis** course. The work is divided into two main areas: Classical Statistical Analysis and Machine Learning applied to Financial Time Series.
 
-**Autores:**
+**Authors:**
 * Guilherme Alves
 * Tomás Gonçalves
 * Bárbara Baptista
@@ -10,27 +10,30 @@ Este repositório contém os projetos práticos desenvolvidos no âmbito da unid
 
 ---
 
-## 1. Projeto de Machine Learning: Previsão de Ações (PayPal)
+## 1. Machine Learning Project: Stock Prediction & Algorithmic Trading (PayPal)
 
-### 🎯 Objetivo
-Explorar a viabilidade de prever a direção do preço das ações do PayPal (PYPL) e a sua volatilidade utilizando algoritmos de Deep Learning (LSTM) e Regressão (SVR), com foco em estratégias de gestão de risco.
+### 🎯 Objective
+To explore the feasibility of predicting PayPal's (PYPL) stock direction and volatility using Deep Learning (LSTM) and Regression (SVR), and to develop a trading strategy focused on risk management.
 
-### 🧠 Metodologia
-O projeto seguiu um pipeline rigoroso de Data Science:
-1.  **Análise de Séries Temporais:** Verificação de estacionariedade (Testes ADF e KPSS) e análise de autocorrelação.
-2.  **Feature Engineering:** Criação de indicadores técnicos (RSI, MACD, Bollinger Bands) e métricas de volatilidade realizada.
-3.  **Modelagem de Volatilidade (SVR):** Utilização de *Support Vector Regression* para prever a magnitude dos movimentos (volatilidade).
-4.  **Classificação de Tendência (LSTM):** Rede Neural Recorrente para classificar o movimento do dia seguinte como "Alta" (1) ou "Baixa" (0).
+### 🧠 Methodology
+The project followed a rigorous Data Science pipeline:
+1.  **Time Series Analysis:** Stationarity checks (ADF and KPSS tests) and autocorrelation analysis to validate data properties.
+2.  **Feature Engineering:** Creation of technical indicators (RSI, MACD, Bollinger Bands) and realized volatility metrics.
+3.  **Volatility Modeling (SVR):** Using *Support Vector Regression* to forecast market volatility.
+4.  **Trend Classification (LSTM):** A Recurrent Neural Network to classify the next day's movement as "Up" (1) or "Down" (0).
+5.  **Trading Strategy Development:** Implementation of a "Sniper Strategy" that combines the LSTM's directional predictions with the SVR's volatility forecasts to make trading decisions.
 
-### 📊 Resultados e Análise Crítica
-Ao contrário de muitos "modelos de caixa preta" que prometem retornos irreais, a nossa análise revelou a dificuldade intrínseca de prever mercados eficientes.
+### 📊 Results and Critical Analysis
+Unlike "black box" models that promise unrealistic returns, our analysis revealed the intrinsic difficulty of predicting efficient markets.
 
-* **Desafio da Acurácia:** O modelo LSTM obteve uma **Acurácia Global de ~48%**, estatisticamente semelhante a um lançamento de moeda. Isso confirma a hipótese de passeio aleatório (*random walk*) em curtos prazos.
-* **O Valor do Recall:** Apesar da baixa acurácia, ajustamos o modelo para ser sensível a quedas. Conseguimos um **Recall de 80% para a classe 'Down'**.
-    * *Significado:* O modelo raramente acerta quando a ação vai subir, mas é excelente a alertar quando a ação vai cair.
-* **Aplicação Real:** O modelo não serve para *trading* agressivo de lucro, mas demonstrou potencial como ferramenta de **Gestão de Risco** (Hedging), permitindo evitar os piores dias de negociação.
+* **The Accuracy Challenge:** The LSTM model achieved a **Global Accuracy of ~48%**, statistically similar to a coin flip. This supports the *random walk* hypothesis in the short term.
+* **The Value of Recall:** Despite low accuracy, we optimized the model to be sensitive to downturns, achieving an **80% Recall for the 'Down' class**.
+    * *Insight:* The model rarely predicts "Up" correctly, but it is excellent at alerting when the stock will crash.
+* **Trading Model Performance:**
+    * We backtested a custom strategy against a Buy & Hold benchmark.
+    * While it did not outperform Buy & Hold in total returns (due to transaction costs and missed upside), it successfully demonstrated potential as a **Risk Management Tool** (Hedging), avoiding significant drawdowns during bearish periods.
 
-| Métrica (Teste) | Classe 'Down' (Queda) | Classe 'Up' (Alta) |
+| Metric (Test Set) | Class 'Down' | Class 'Up' |
 | :--- | :---: | :---: |
 | **Precision** | 0.48 | 0.50 |
 | **Recall** | **0.80** | 0.19 |
@@ -38,24 +41,24 @@ Ao contrário de muitos "modelos de caixa preta" que prometem retornos irreais, 
 
 ---
 
-## 2. Projeto de Estatística: Análise Multivariada
+## 2. Statistics Project: Multivariate Analysis
 
-### 🎯 Objetivo
-Aplicação de métodos estatísticos robustos para validar hipóteses e reduzir a dimensionalidade em datasets clássicos (Iris Dataset e Student Performance).
+### 🎯 Objective
+Application of robust statistical methods to test hypotheses and reduce dimensionality in classic datasets (Iris Dataset and Student Performance).
 
-### 🧪 Técnicas Aplicadas
-* **MANOVA (Multivariate Analysis of Variance):** Para testar se existem diferenças estatisticamente significativas entre os centróides das espécies de flores considerando todas as variáveis simultaneamente.
-* **PCA (Principal Component Analysis):** Redução de dimensionalidade para visualização da estrutura dos dados, demonstrando que a maior parte da variância explicada reside nos dois primeiros componentes principais.
-* **Regressão Linear Múltipla:** Análise de fatores que influenciam o desempenho dos estudantes.
+### 🧪 Techniques Applied
+* **MANOVA (Multivariate Analysis of Variance):** To test if there are statistically significant differences between flower species centroids considering all variables simultaneously.
+* **PCA (Principal Component Analysis):** Dimensionality reduction to visualize data structure, demonstrating that most variance is explained by the first two principal components.
+* **Multiple Linear Regression:** Analysis of factors influencing student performance.
 
 ---
 
-## 🛠️ Tecnologias e Bibliotecas
-* **Linguagem:** Python 3.x
+## 🛠️ Technologies & Libraries
+* **Language:** Python 3.x
 * **Machine Learning/DL:** TensorFlow (Keras), Scikit-Learn, XGBoost.
-* **Estatística:** SciPy, Statsmodels.
-* **Visualização:** Matplotlib, Seaborn.
-* **Dados:** Yahoo Finance API (`yfinance`).
+* **Statistics:** SciPy, Statsmodels.
+* **Visualization:** Matplotlib, Seaborn.
+* **Data:** Yahoo Finance API (`yfinance`).
 
-## ⚠️ Isenção de Responsabilidade
-Este projeto tem fins estritamente educacionais e académicos. Nenhuma informação aqui contida constitui aconselhamento financeiro ou recomendação de investimento.
+## ⚠️ Disclaimer
+This project is for educational and academic purposes only. Nothing contained herein constitutes financial advice or investment recommendations.
