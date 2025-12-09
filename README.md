@@ -26,6 +26,12 @@ The project followed a rigorous Data Science pipeline:
 ### 📊 Results and Critical Analysis
 Unlike "black box" models that promise unrealistic returns, our analysis revealed the intrinsic difficulty of predicting efficient markets.
 
+| Metric (Test Set) | Class 'Down' | Class 'Up' |
+| :--- | :---: | :---: |
+| **Precision** | 0.48 | 0.50 |
+| **Recall** | **0.80** | 0.19 |
+| **F1-Score** | 0.60 | 0.28 |
+
 * **The Accuracy Challenge:** The LSTM model achieved a **Global Accuracy of ~48%**, statistically similar to a coin flip. This supports the *random walk* hypothesis in the short term.
 * **The Value of Recall:** Despite low accuracy, we optimized the model to be sensitive to downturns, achieving an **80% Recall for the 'Down' class**.
     * *Insight:* The model rarely predicts "Up" correctly, but it is excellent at alerting when the stock will crash.
@@ -33,11 +39,7 @@ Unlike "black box" models that promise unrealistic returns, our analysis reveale
     * We backtested a custom strategy against a Buy & Hold benchmark.
     * While it did not outperform Buy & Hold in total returns (due to transaction costs and missed upside), it successfully demonstrated potential as a **Risk Management Tool** (Hedging), avoiding significant drawdowns during bearish periods.
 
-| Metric (Test Set) | Class 'Down' | Class 'Up' |
-| :--- | :---: | :---: |
-| **Precision** | 0.48 | 0.50 |
-| **Recall** | **0.80** | 0.19 |
-| **F1-Score** | 0.60 | 0.28 |
+
 
 ---
 
